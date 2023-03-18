@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes, { string, object } from "prop-types";
 import { ScrollView, Text, View, StyleSheet, RefreshControl } from "react-native";
+import { BannerAd, BannerAdSize, TestIds } from "react-native-google-mobile-ads";
 
 import Screen from "../Screen.js";
 import MoviesRow from "./MoviesRow";
@@ -41,7 +42,16 @@ class HomeComponent extends Component {
   renderMovieRow = () => {
     const { navigation, data, subTitle, type } = this.props;
     return subTitle.map((title, index) => (
-      <MoviesRow key={index} data={{ ...data[index] }.results} title={title} navigation={navigation} type={type} />
+      <>
+        <BannerAd
+          unitId={TestIds.BANNER}
+          size={BannerAdSize.LEADERBOARD}
+          requestOptions={{
+            requestNonPersonalizedAdsOnly: true,
+          }}
+        />
+        <MoviesRow key={index} data={{ ...data[index] }.results} title={title} navigation={navigation} type={type} />
+      </>
     ));
   };
 
@@ -61,7 +71,15 @@ class HomeComponent extends Component {
   render() {
     return (
       <Screen>
+        <BannerAd
+          unitId={TestIds.BANNER}
+          size={BannerAdSize.FULL_BANNER}
+          requestOptions={{
+            requestNonPersonalizedAdsOnly: true,
+          }}
+        />
         {this.renderHeader()}
+
         {this.renderMoviesComponent()}
       </Screen>
     );

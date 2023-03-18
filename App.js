@@ -21,6 +21,11 @@ import MovieListScreen from "./src/screen/MovieListScreen";
 import OfflineNotice from "./src/component/OfflineNotice";
 import MovieSeasonScreen from "./src/screen/MovieSeasonScreen";
 
+import { showOpenAppAd, showInterstitialAd } from "./src/config/Admob";
+
+import mobileAds from "react-native-google-mobile-ads";
+import { AppOpenAd, TestIds, AdEventType } from "react-native-google-mobile-ads";
+
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -55,6 +60,13 @@ const AppNavigator = () => {
 const App = () => {
   useEffect(() => {
     SplashScreen.hide();
+
+    mobileAds()
+      .initialize()
+      .then((adapterStatuses) => {
+        console.log("initializa Addmob Done");
+        showInterstitialAd();
+      });
   }, []);
 
   return (

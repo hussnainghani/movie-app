@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { View, StatusBar, ScrollView, StyleSheet } from "react-native";
+import { BannerAd, BannerAdSize, TestIds } from "react-native-google-mobile-ads";
 
 import { requestMovieDetailScreen } from "../api/api";
+import { showBannerAd } from "../config/Admob";
 
 import MovieBackdrop from "../component/MovieDetail/MovieBackdrop";
 import MovieOverview from "../component/MovieDetail/MovieOverview";
@@ -70,7 +72,9 @@ class MovieDetailScreen extends Component {
               <MovieGenres genre={movieData.genres} />
               <MovieOverview overview={movieData.overview} />
               <MovieCast credit={credit} />
+              {showBannerAd()}
               <MovieImages images={images} />
+              {showBannerAd()}
               <MovieRecommendations recommendations={recommendations} navigation={navigation} />
             </View>
           )}
