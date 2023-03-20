@@ -25,6 +25,8 @@ import { showOpenAppAd, showInterstitialAd } from "./src/config/Admob";
 
 import mobileAds from "react-native-google-mobile-ads";
 import { AppOpenAd, TestIds, AdEventType } from "react-native-google-mobile-ads";
+// import { AdView } from "react-native-fbads";
+// import { AdSettings } from "react-native-fbads";
 
 const Stack = createStackNavigator();
 
@@ -61,6 +63,7 @@ const App = () => {
   useEffect(() => {
     SplashScreen.hide();
 
+    // AdSettings.initialize(464059364253798);
     mobileAds()
       .initialize()
       .then((adapterStatuses) => {
